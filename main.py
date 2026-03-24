@@ -24,12 +24,19 @@ def main():
             case "2":
                 task_manager.list_tasks()
             case "3":
-                task_id = int(
-                    input("Enter the ID of the task to mark as completed: "))
-                task_manager.mark_task_completed(task_id)
+                task_id = input(
+                    "Enter the ID of the task to mark as completed: ")
+                try:
+                    task_manager.mark_task_completed(task_id)
+                except ValueError:
+                    print("Invalid input. Please enter a valid task ID.")
+
             case "4":
-                task_id = int(input("Enter the ID of the task to remove: "))
-                task_manager.remove_task(task_id)
+                task_id = input("Enter the ID of the task to remove: ")
+                try:
+                    task_manager.remove_task(task_id)
+                except ValueError:
+                    print("Invalid input. Please enter a valid task ID.")
             case "5":
                 print("Exiting...")
                 break
