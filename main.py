@@ -1,8 +1,10 @@
 from task_manager import TaskManager
+from ai_service import create_simple_task
 
 
 def print_menu():
     print("\nTask Manager")
+    print("0. Create Simple Task using AI")
     print("1. Add Task")
     print("2. List Tasks")
     print("3. Mark Task as Completed")
@@ -17,6 +19,17 @@ def main():
 
         choice = input("Enter your choice: ")
         match choice:
+            case "0":
+                task_description = input("Enter the description of the task: ")
+                try:
+                    subtasks = create_simple_task(task_description)
+                    if subtasks:
+                        print("Subtasks created by AI:")
+                        for i, subtask in enumerate(subtasks, 1):
+                            print(f"{i}. {subtask}")
+                            task_manager.add_task(f"Subtask {i}", subtask)
+                except Exception as e:
+                    print(e)
             case "1":
                 title = input("Enter the title of the task: ")
                 description = input("Enter the description of the task: ")
